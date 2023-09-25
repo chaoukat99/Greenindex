@@ -659,12 +659,24 @@ let sub_btn= document.querySelector("#sub");
 
 
 form.addEventListener("submit",(e)=>{
+	
 let nom_complet=document.querySelector("#name");
 let email=document.querySelector("#email");
 let sub=document.querySelector("#subject");
 let message = document.querySelector("#message");
+
+// Empty fields fun
+	const  empty=()=>{
+		nom_complet.value="";
+		email.value="";
+		sub.value="";
+		message.value="";
+	}
+	
     e.preventDefault();
-     
+
+
+	
     // fecth post 
     fetch("https://node-app-omar.onrender.com/greenindex/add-message",
 {method:"POST",headers:{"Content-Type":"application/json"}, body:JSON.stringify({
@@ -683,7 +695,8 @@ let message = document.querySelector("#message");
   title: data.message,
   showConfirmButton: false,
   timer: 1500
-})
+});
+	empty()
 })
 .catch((err)=>{
   Swal.fire({
